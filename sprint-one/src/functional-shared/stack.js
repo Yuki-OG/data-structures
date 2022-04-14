@@ -11,7 +11,6 @@ var Stack = function() {
 var stackMethods = {
   push: function(value) {
     var highestIndex = stackMethods.findHighestIndex(this.storage);
-    console.log(typeof highestIndex);
     if (this.storage[highestIndex] === undefined) {
       highestIndex = parseInt(highestIndex) - 1;
     }
