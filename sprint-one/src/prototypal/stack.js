@@ -1,8 +1,34 @@
 var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+  var instance = Object.create(stackMethods);
+
+  instance.storage = {};
+
+  return instance;
 };
 
-var stackMethods = {};
+var stackMethods = {
+  push: function(value) {
+    var highestIndex = stackMethods.getHighestIndex(this.storage);
+    this.storage[highestIndex + 1] = value;
+  },
+  pop: function() {
+    var highestIndex = stackMethods.getHighestIndex(this.storage);
+    var popped = this.storage[highestIndex];
+    delete this.storage[highestIndex];
+    return popped;
+  },
+  size: function() {
+    var counter = 0;
+    _.each(this.storage, function(item) {
+      counter++;
+    });
+    return counter;
+  },
+  getHighestIndex: function(obj) {
+    return _.reduce(obj, function(highest, item, key) {
+      return key > highest ? parseInt(key) : highest;
+    }, 0);
+  }
+};
 
 
