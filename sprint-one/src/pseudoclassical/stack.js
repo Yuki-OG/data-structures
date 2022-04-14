@@ -3,12 +3,12 @@ var Stack = function() {
 };
 
 Stack.prototype.push = function(value) {
-  var highestIndex = getHighestIndex(this.storage);
+  var highestIndex = this.getHighestIndex(this.storage);
   this.storage[highestIndex + 1] = value;
 };
 
 Stack.prototype.pop = function() {
-  var highestIndex = getHighestIndex(this.storage);
+  var highestIndex = this.getHighestIndex(this.storage);
   var popped = this.storage[highestIndex];
   delete this.storage[highestIndex];
   return popped;
@@ -20,9 +20,10 @@ Stack.prototype.size = function() {
     counter++;
   });
   return counter;
+  // _.size(this.storage);
 };
 
-var getHighestIndex = function(obj) {
+Stack.prototype.getHighestIndex = function(obj) {
   return _.reduce(obj, function(highest, item, key) {
     return key > highest ? parseInt(key) : highest;
   }, 0);
