@@ -56,4 +56,5 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  calling getIndexBelowMax our highest order function the worst case would be 0(n)
  */

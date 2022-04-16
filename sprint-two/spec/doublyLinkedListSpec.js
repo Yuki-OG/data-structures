@@ -1,8 +1,8 @@
-describe('linkedList', function() {
+describe('doublyLinkedList', function() {
   var linkedList;
 
   beforeEach(function() {
-    linkedList = LinkedList();
+    linkedList = DoublyLinkedList();
   });
 
   it('should have a head and tail', function() {
@@ -52,4 +52,32 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should have a previous property', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.tail).to.have.property('prev');
+  });
+
+  it('first node should have previous set to null', function() {
+    linkedList.addToTail(4);
+    expect(linkedList.tail.prev).to.equal(null);
+  });
+
+  it('if two nodes exist their previous and next values should point to each other', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.head.next).to.equal(linkedList.tail);
+    expect(linkedList.tail.prev).to.equal(linkedList.head);
+  });
+
+  it('Heads prev node should always point to null', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.head.prev).to.equal(null);
+    linkedList.removeHead();
+    expect(linkedList.head.prev).to.equal(null);
+  });
 });
+
+
+
